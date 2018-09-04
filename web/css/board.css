@@ -2,13 +2,14 @@
 
 body {
     margin: 30px;
+    font-size: 14px;
 }
 
 table {
     width: 80%;
 }
     td {
-        font-size: 10px;
+        font-size: 14px;
     }
 a {
     text-decoration: none;
