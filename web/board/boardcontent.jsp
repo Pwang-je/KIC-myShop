@@ -8,7 +8,7 @@
 	String spage = request.getParameter("page");
 	//System.out.println(num + " " + spage);
 
-//	boardMgr.updateReadcnt("nested");	이부분고쳐야댐.
+	boardMgr.updateReadcnt(num);
 	dto = boardMgr.getData(num); //해당자료읽기
 	
 	String name = dto.getName();
@@ -19,6 +19,13 @@
 	String bip = dto.getBip();
 	String bdate = dto.getBdate();
 	int cnt = dto.getReadcnt();
+
+    // 비밀번호 관리자만 보이게.
+    String apass = "******";
+	String adminOk = (String) session.getAttribute("adminOk");
+	if (adminOk != null) {
+	    if (adminOk.equals("admin")) apass = pass;
+    }
 	
 %>
 <!DOCTYPE html>

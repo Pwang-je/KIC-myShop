@@ -4,9 +4,11 @@
     <title>Title</title>
 </head>
 <body>
-HOME <br>
-<a href="board/boardlist.jsp">게시판</a>
-<a href="member/register.jsp">회원관리</a>
-
+<%
+    session.removeAttribute("adminOk");
+%>
+로그아웃 성공!
+<br><br>
+[<a href="javascript:window.close()">창닫기</a>]
 </body>
 </html>

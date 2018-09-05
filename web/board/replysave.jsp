@@ -23,9 +23,4 @@
 
     boardMgr.saveReplyData(bean);
     response.sendRedirect("boardlist.jsp?page=" + spage);
-
-
-
-
-
 %>

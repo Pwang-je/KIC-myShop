@@ -286,5 +286,77 @@ public class BoardManager { //디비연동
 
 	}
 
+	// 수정에서 비밀번호 비교
+	public boolean checkPass(int num, String new_pass) {
+	    boolean b = false;
+	    String sql = "SELECT PASS FROM SHOPBOARD WHERE NUM=?";
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, num);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                if (new_pass.equals(rs.getString("pass"))) {
+                    b = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+
+            }
+        }
+        return b;
+    }
+
+    public void editData(BoardBean bean) {
+	    String sql = "UPDATE SHOPBOARD SET NAME=?, MAIL=?, TITLE=?, CONT=? WHERE NUM=?";
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, bean.getName());
+            pstmt.setString(2, bean.getMail());
+            pstmt.setString(3, bean.getTitle());
+            pstmt.setString(4, bean.getCont());
+            pstmt.setInt(5, bean.getNum());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+
+            }
+        }
+    }
+
+    public void delData(String num) {
+	    String sql = "DELETE FROM SHOPBOARD WHERE NUM = ?";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs !=null) rs.close();
+				if(pstmt !=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (Exception e2) {
+
+			}
+		}
+    }
 
 }
