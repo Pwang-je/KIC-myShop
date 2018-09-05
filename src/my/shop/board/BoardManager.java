@@ -283,6 +283,36 @@ public class BoardManager { //디비연동
 
 	// 댓글 저장용.
 	public void saveReplyData(BoardBean bean) {
+		String sql = "INSERT INTO SHOPBOARD VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bean.getNum());   //번호
+			pstmt.setString(2, bean.getName()); //이름
+			pstmt.setString(3, bean.getPass());
+			pstmt.setString(4, bean.getMail());
+			pstmt.setString(5, bean.getTitle());
+			pstmt.setString(6, bean.getCont());
+			pstmt.setString(7, bean.getBip());
+			pstmt.setString(8, bean.getBdate());
+
+			pstmt.setInt(9, 0);  //readcnt 0을줘야함
+			pstmt.setInt(10, bean.getGnum());
+			pstmt.setInt(11, bean.getOnum());
+			pstmt.setInt(12, bean.getNested());
+			pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs !=null) rs.close();
+				if(pstmt !=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (Exception e2) {
+
+			}
+		}
 
 	}
 
