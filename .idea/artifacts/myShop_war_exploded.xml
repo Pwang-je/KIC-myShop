@@ -9,8 +9,8 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="JAX-WS-Apache Axis" />
-          <element id="library" level="project" name="JAX-WS-Apache Axis (2)" />
           <element id="file-copy" path="$PROJECT_DIR$/../ojdbc7.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../cos.jar" />
         </element>
       </element>
     </root>

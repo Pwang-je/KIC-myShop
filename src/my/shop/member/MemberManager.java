@@ -82,4 +82,157 @@ public class MemberManager {
 
         return b;
     }
+
+    // registerproc.
+    public boolean memInsert(MemberBean memBean) {
+        boolean b = false;
+
+        try {
+            conn = ds.getConnection();
+            String mSql = "INSERT INTO MEMBER VALUES (?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(mSql);
+            pstmt.setString(1, memBean.getId());
+            pstmt.setString(2, memBean.getPasswd());
+            pstmt.setString(3, memBean.getName());
+            pstmt.setString(4, memBean.getEmail());
+            pstmt.setString(5, memBean.getPhone());
+            pstmt.setString(6, memBean.getZipcode());
+            pstmt.setString(7, memBean.getAddress());
+            pstmt.setString(8, memBean.getJob());
+
+            if (pstmt.executeUpdate() > 0) b = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+                System.out.println("savedata err"+ e2);
+            }
+        }
+
+        return b;
+    }
+
+    public boolean loginCheck(String id, String passwd) {
+
+        boolean b = false;
+
+        try {
+            conn = ds.getConnection();
+            String cSql = "SELECT ID, PASSWD FROM MEMBER WHERE ID=? AND PASSWD=?";
+            pstmt = conn.prepareStatement(cSql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, passwd);
+            rs = pstmt.executeQuery();
+            b = rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+                System.out.println("savedata err"+ e2);
+            }
+        }
+
+
+        return b;
+    }
+
+    public MemberBean getMember (String id) {
+        MemberBean bean = null;
+
+        try {
+            conn = ds.getConnection();
+            String mSql = "SELECT * FROM MEMBER WHERE ID=?";
+            pstmt = conn.prepareStatement(mSql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                bean = new MemberBean();
+                bean.setId(rs.getString("id"));
+                bean.setPasswd(rs.getString("passwd"));
+                bean.setName(rs.getString("name"));
+                bean.setEmail(rs.getString("email"));
+                bean.setPhone(rs.getString("phone"));
+                bean.setZipcode(rs.getString("zipcode"));
+                bean.setAddress(rs.getString("address"));
+                bean.setJob(rs.getString("job"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+                System.out.println("savedata err"+ e2);
+            }
+        }
+        return bean;
+    }
+
+    public boolean memberUpdate(MemberBean bean, String id) {
+        boolean b = false;
+
+        try {
+            conn = ds.getConnection();
+            String sql = "UPDATE MEMBER SET PASSWD=?, NAME=?, EMAIL=?, PHONE=?, ZIPCODE=?, ADDRESS=?, JOB=? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, bean.getPasswd());
+            pstmt.setString(2, bean.getName());
+            pstmt.setString(3, bean.getEmail());
+            pstmt.setString(4, bean.getPhone());
+            pstmt.setString(5, bean.getZipcode());
+            pstmt.setString(6, bean.getAddress());
+            pstmt.setString(7, bean.getJob());
+            pstmt.setString(8, id);
+            if (pstmt.executeUpdate() > 0) b = true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+                System.out.println("savedata err"+ e2);
+            }
+        }
+
+        return b;
+    }
+
+    public boolean adminLoginChk(String adminid, String adminpasswd) {
+        boolean b = false;
+
+        try {
+            conn = ds.getConnection();
+            String aSql = "SELECT * FROM ADMIN WHERE ADMIN_ID=? AND ADMIN_PASSWD=?";
+            pstmt = conn.prepareStatement(aSql);
+            pstmt.setString(1, adminid);
+            pstmt.setString(2, adminpasswd);
+            rs = pstmt.executeQuery();
+            b = rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(rs !=null) rs.close();
+                if(pstmt !=null) pstmt.close();
+                if(conn !=null) conn.close();
+            } catch (Exception e2) {
+                System.out.println("savedata err"+ e2);
+            }
+        }
+        return b;
+    }
 }
