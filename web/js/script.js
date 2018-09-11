@@ -14,7 +14,7 @@ function idCheck() {
 }
 
 function inputCheck() {
-    if (regForm.id.value !== "") {
+    if (regForm.id.value === "") {
         alert("비밀번호를 입력하세요");
         regForm.id.focus();
         return;
@@ -46,4 +46,55 @@ function memUpdateCancleFunc() {
 
 function memDelete() {
 
+}
+
+// 회원정보 수정
+function memUpdate(id) {
+    document.updateFrm.id.value = id;
+    document.updateFrm.submit();
+}
+
+function memUpdateAdminFunc() {
+    document.updateFormAdmin.submit();
+}
+function memUpdateCancleAdminFunc() {
+    location.href = "../admin/membermanager.jsp";
+}
+
+
+function productDetail(no) {
+    document.detailFrm.no.value = no;
+    document.detailFrm.submit();
+}
+
+function productUpdate(no) {
+    document.updateFrm.no.value = no;
+    document.updateFrm.submit();
+}
+
+function productDelete(no) {
+    if (confirm('삭제함?')) {
+        document.delFrm.no.value = no;
+        document.delFrm.submit();
+    }
+}
+
+// 장바구니 처리용
+function cartUpdate(form) {
+    form.flag.value = "update";
+    form.submit();
+}
+function cartDelete(form) {
+
+}
+
+
+function orderDetail(no) {
+    document.detailFrm.no.value = no;
+    document.detailFrm.submit();
+}
+
+function orderUpdate(form) {
+    document.orderDetailFrm.flag.value = "update";
+    form.submit();
 }

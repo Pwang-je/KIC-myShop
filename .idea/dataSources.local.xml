@@ -11,7 +11,7 @@
       <user-name>scott</user-name>
       <introspection-schemas>*:@</introspection-schemas>
     </data-source>
-    <data-source name="@KIC MARIA" uuid="8736d874-3358-4fbd-959f-260d17df0eee">
+    <data-source name="@localhost" uuid="02bed87a-0ee6-4159-b0f7-53a172384383">
       <database-info product="MySQL" version="10.3.8-MariaDB" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1" family="MARIADB" exact-version="10.3.8">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

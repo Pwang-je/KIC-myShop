@@ -28,7 +28,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="JAX-WS-Apache Axis" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.321" level="application_server_libraries" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../ojdbc7.jar!/" />
@@ -41,6 +41,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../cos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/mariadb-java-client-2.3.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -10,13 +10,11 @@
     <script src="../js/script.js"></script>
     <script type="text/javascript">
         window.onload = function() {
-            document.getElementById("btnLogin");
-            addEventListener("click", funcLogin, false);
-            document.getElementById("btnNewmember");
-            addEventListener("click", funcNew, false);
+            document.getElementById("btnLogin").addEventListener("click", funcLogin, false);
+            document.getElementById("btnNewmember").addEventListener("click", funcNew, false);
         }
         function funcLogin () {
-            if (loginForm.id.value === "" || loginForm.passwd.value) {
+            if (loginForm.id.value === "" || loginForm.passwd.value === "") {
                 alert("자료를 채우시오");
             } else {
                 loginForm.action = "loginproc.jsp";

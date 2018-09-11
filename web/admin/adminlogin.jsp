@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8");
+String id = request.getParameter("idKey"); %>
 <html>
 <head>
     <title>관리자 로그인</title>

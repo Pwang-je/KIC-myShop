@@ -1,6 +1,7 @@
 package my.shop.member;
 
-import javax.naming.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,9 +16,9 @@ public class MemberManager {
     public MemberManager() {
         try {
             Context context = new InitialContext();
-            ds = (DataSource) context.lookup("java:comp/env/jdbc_oracle");
+            ds = (DataSource)context.lookup("java:comp/env/jdbc_maria");
         } catch (Exception e) {
-            System.out.println("BoardManager err" + e);
+            System.out.println("MemberManager err" + e);
         }
     }
     // Const.
@@ -50,7 +51,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("zipRead err"+ e2);
             }
         }
         return list;
@@ -76,7 +77,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("checkId err"+ e2);
             }
         }
 
@@ -109,7 +110,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("memInsert err"+ e2);
             }
         }
 
@@ -136,7 +137,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("loginCheck err"+ e2);
             }
         }
 
@@ -173,7 +174,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("getMember err"+ e2);
             }
         }
         return bean;
@@ -204,7 +205,7 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("memberUpdate err"+ e2);
             }
         }
 
@@ -230,9 +231,39 @@ public class MemberManager {
                 if(pstmt !=null) pstmt.close();
                 if(conn !=null) conn.close();
             } catch (Exception e2) {
-                System.out.println("savedata err"+ e2);
+                System.out.println("adminLoginChk err"+ e2);
             }
         }
         return b;
     }
+
+    // 회원전체 관리
+    public ArrayList<MemberBean> getMemberAll() {
+
+        ArrayList<MemberBean> list = new ArrayList<>();
+
+        try {
+            conn = ds.getConnection();
+            String aSql = "SELECT * FROM MEMBER";
+            pstmt = conn.prepareStatement(aSql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                MemberBean bean = new MemberBean();
+                bean.setId(rs.getString("id"));
+                bean.setName(rs.getString("name"));
+                bean.setPasswd(rs.getString("passwd"));
+                bean.setEmail(rs.getString("email"));
+                bean.setPhone(rs.getString("phone"));
+                list.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        }
+
+        return list;
+    }
+
+
 }

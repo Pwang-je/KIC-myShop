@@ -11,6 +11,7 @@
           <element id="library" level="project" name="JAX-WS-Apache Axis" />
           <element id="file-copy" path="$PROJECT_DIR$/../ojdbc7.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/../cos.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/mariadb-java-client-2.3.0.jar" />
         </element>
       </element>
     </root>

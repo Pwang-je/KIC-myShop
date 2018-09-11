@@ -11,7 +11,7 @@
         <property name="v$session.program" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="@KIC MARIA" uuid="8736d874-3358-4fbd-959f-260d17df0eee">
+    <data-source source="LOCAL" name="@localhost" uuid="02bed87a-0ee6-4159-b0f7-53a172384383">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
